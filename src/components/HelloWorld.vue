@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <h3>{{ message }}</h3>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -87,12 +88,29 @@
 </template>
 
 <script>
-export default {
-  name: "HelloWorld",
-  props: {
-    msg: String
+
+import Vue from 'vue';
+import Component from "vue-class-component";
+
+// 表明此组件接受propMessage参数
+@Component({
+    props: {
+        msg: String
+    }
+})
+
+export default class HelloWorld extends Vue {
+
+  message = '你好，Vue && TS！'
+
+  // 等价于是 computed: { computedMsg() {} }
+  get computedMsg() {
+    return 'computed ' + this.msg
   }
-};
+
+}
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
